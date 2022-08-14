@@ -37,22 +37,22 @@ func validate(req any) error {
 				FieldViolations: []*errdetails.BadRequest_FieldViolation{},
 			}
 
-			switch ve := err.(type) {
+			switch vme := err.(type) {
 
 			case validateMultiError:
-				errs := ve.AllErrors()
+				errs := vme.AllErrors()
 
 				for i := 0; i < len(errs); i++ {
-					switch vi := errs[i].(type) {
+					switch ve := errs[i].(type) {
 					case validationError:
 
 						fieldInfo.FieldViolations = append(
 							fieldInfo.FieldViolations,
 							&errdetails.BadRequest_FieldViolation{
 								Field: fmt.Sprintf("%s.%s",
-									strings.TrimSuffix(vi.ErrorName(), "ValidationError"),
-									vi.Field()),
-								Description: vi.Reason(),
+									strings.TrimSuffix(ve.ErrorName(), "ValidationError"),
+									ve.Field()),
+								Description: ve.Reason(),
 							},
 						)
 					}
