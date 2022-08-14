@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package greet.v1;
+
+import "validate/validate.proto";
+
+option go_package = "example/gen/greet/v1;greetv1";
+
+message GreetRequest {
+  string first_name = 1 [(validate.rules).string = {prefix:"foo",min_len: 2, max_len: 10}];
+  string last_name = 2 [(validate.rules).string = {min_len: 2, max_len: 10}];
+}
+
+message GreetResponse {
+  string greeting = 1;
+}
+
+service GreetService {
+  rpc Greet(GreetRequest) returns (GreetResponse) {}
+}
