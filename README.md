@@ -10,7 +10,7 @@ call incorrect request using curl, etc.
 
 Here is the schema with validation [proto/greet/v1/greet.proto](proto/greet/v1/greet.proto)
 
-```json
+```
 curl \
     --header "Content-Type: application/json" \
     --data '{"first_name": "toolongfirst_name","last_name":"s"}' \
