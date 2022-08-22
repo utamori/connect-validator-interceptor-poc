@@ -1,4 +1,4 @@
-# connect-go unary interceptor sample for protoc-gen-grpc
+# connect-go unary interceptor sample for protoc-gen-
 
 # How to test
 
